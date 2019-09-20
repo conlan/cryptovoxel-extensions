@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 const ethers = require('ethers');
 
-var uniswap_contract_abi = [{"name":"ethToTokenSwapInput","inputs":[{"type":"uint256","name":"min_tokens"},{"type":"uint256","name":"deadline"}],"type":"function","outputs":[{"type":"uint256","name":"out"}],"constant":false,"payable":true,"gas":12757},{"name":"getEthToTokenOutputPrice","inputs":[{"type":"uint256","name":"tokens_bought"}],"type":"function","outputs":[{"type":"uint256","name":"out"}],"constant":true,"payable":false,"gas":6872}]
+var uniswap_contract_abi = [{"name":"ethToTokenSwapOutput","inputs":[{"type":"uint256","name":"tokens_bought"},{"type":"uint256","name":"deadline"}],"type":"function","outputs":[{"type":"uint256","name":"out"}],"constant":false,"payable":true,"gas":50463},{"name":"getEthToTokenOutputPrice","inputs":[{"type":"uint256","name":"tokens_bought"}],"type":"function","outputs":[{"type":"uint256","name":"out"}],"constant":true,"payable":false,"gas":6872}]
 var uniswap_contract_address = '0x3F0c63dA66457dedc2677BEF6bbdd457BA7A3C0b'
 
 // only initiate the transaction once
@@ -29,7 +29,7 @@ async function get_exchange_rate_and_swap() {
 
 	console.log(typeof intendedColrAmount)
 	// generate the call data for the exchange rate -- amount of eth we'll need
-	var calldata = iface.functions.ethToTokenSwapInput.encode([100, deadline])
+	var calldata = iface.functions.ethToTokenSwapOutput.encode([intendedColrAmount, deadline])
 
 	console.log(calldata)
 
@@ -37,11 +37,11 @@ async function get_exchange_rate_and_swap() {
 	var signer = web3context.library.getSigner();
 
 	// send the transaction
-	// signer.sendTransaction({
-	// 	to: uniswap_contract_address,
-	// 	data: calldata,
-	// 	value: ethers.utils.parseEther(exchangeRateEth.toString())
-	// })
+	signer.sendTransaction({
+		to: uniswap_contract_address,
+		data: calldata,
+		value: ethers.utils.parseEther(exchangeRateEth.toString())
+	})
 }
 
 class ColorVendingV1 extends Component {
