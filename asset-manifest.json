@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/cryptovoxel-extensions/static/js/main.e05a52ea.chunk.js",
+    "main.js.map": "/cryptovoxel-extensions/static/js/main.e05a52ea.chunk.js.map",
+    "runtime-main.js": "/cryptovoxel-extensions/static/js/runtime-main.bf7d3ab8.js",
+    "runtime-main.js.map": "/cryptovoxel-extensions/static/js/runtime-main.bf7d3ab8.js.map",
+    "static/js/2.77727998.chunk.js": "/cryptovoxel-extensions/static/js/2.77727998.chunk.js",
+    "static/js/2.77727998.chunk.js.map": "/cryptovoxel-extensions/static/js/2.77727998.chunk.js.map",
+    "index.html": "/cryptovoxel-extensions/index.html",
+    "precache-manifest.f35631d922ac8d48680bd9041a8bdf54.js": "/cryptovoxel-extensions/precache-manifest.f35631d922ac8d48680bd9041a8bdf54.js",
+    "service-worker.js": "/cryptovoxel-extensions/service-worker.js"
+  }
+}
