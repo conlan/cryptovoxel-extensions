@@ -56,6 +56,8 @@ async function get_exchange_rate_and_swap() {
 	})
 }
 
+const MAX_ALLOWED_COLR_PURCHASE = 100;
+
 class ColorVendingV1 extends Component {
 	constructor(props) {
 		super(props)
@@ -71,7 +73,9 @@ class ColorVendingV1 extends Component {
 		if (didExecuteIntent === false) {			
 			didExecuteIntent = true;
 
-			get_exchange_rate_and_swap()		
+			if (intendedColrAmount <= MAX_ALLOWED_COLR_PURCHASE) {
+				get_exchange_rate_and_swap()		
+			}
 		} 
 	}
 
