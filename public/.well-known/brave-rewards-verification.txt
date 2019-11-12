@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: conlan.github.io
+Token: adb6846200d6ffd56216f5d2b2cb8bb8eb30b0a2a7d661cc4d668a69ab978224
