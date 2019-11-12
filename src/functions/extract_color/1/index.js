@@ -13,6 +13,7 @@ var app = null;
 var stakedAmount = -1;
 var parcelId = -1
 var isFetchingStake = false;
+var userAddress = "0x9AF481276b075e036BC23E887a8Bd275e69Ef74C"
 
 
 async function getStakedAmount() {
@@ -100,8 +101,6 @@ class ExtractColorV1 extends Component {
 
 		app = this.props.app;
 
-		console.log(app)
-
 		document.title += " Extract $COLR"
 	}
 
@@ -116,8 +115,6 @@ class ExtractColorV1 extends Component {
 	    		<p>Parcel ID (Ensure that you own this parcel):</p>
 	    		<input type="number" name="parcelInput" min="1" max="4000"/>	    	
 	    		<button onClick={getStakedAmount} type="button">Fetch</button>
-				<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
-	    		<p>💥 Close this window to return to Cryptovoxels.</p>	    		
 	    		</div>
 			)
 		} else if (stakedAmount == 0) {
@@ -127,7 +124,6 @@ class ExtractColorV1 extends Component {
 	    		<button onClick={getStakedAmount} type="button">Fetch</button>
 	    		<p><span>🌈</span> {stakedAmount} COLR staked on Parcel <a target="_blank" href={parcelLink}>#{parcelId}</a>.</p>
 	    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
-	    		<p>💥 Close this window to return to Cryptovoxels.</p>
 	    		</div>
 			)
 		} else {
@@ -138,11 +134,11 @@ class ExtractColorV1 extends Component {
 	    		<p><span>🌈</span> {stakedAmount} COLR staked on Parcel <a target="_blank" href={parcelLink}>#{parcelId}</a>. Withdraw how much?</p>
 	    		<input type="number" name="colr" min="1" max={stakedAmount}/>
 				<p>To recipient wallet address:</p>
-	    		<input name="address"/>	    		
+	    		<input name="address" defaultValue={userAddress}/>	    		
 	    		<br/><br/>
 	    		<button onClick={withdrawStake} type="button">Submit</button>
 	    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
-	    		<p>💥 Close this window to return to Cryptovoxels.</p>
+	    		<p>💥 Close this window after submitting to return to Cryptovoxels.</p>
 	    		</div>
 			)
 	    }
