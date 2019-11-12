@@ -29,7 +29,7 @@ class AppWrapper extends Component {
 	render() {
     	return (
     		<Web3Provider connectors={connectors} libraryName="ethers.js">
-    			<App intentData={intentData}/>
+    			<App intentData={intentData} app={this}/>
     		</Web3Provider>
     	)
   	}

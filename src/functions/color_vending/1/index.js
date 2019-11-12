@@ -51,7 +51,6 @@ async function get_exchange_rate_and_swap() {
 	var signer = web3context.library.getSigner();
 
 	const tx = {
-		from: "0x9AF481276b075e036BC23E887a8Bd275e69Ef74C",
 		to: uniswap_contract_address,
 		data: calldata,
 		value: ethers.utils.parseEther(exchangeRateEth.toString()),
@@ -89,13 +88,13 @@ class ColorVendingV1 extends Component {
 	render() {
 		var etherscanLink = "https://etherscan.io/address/" + uniswap_contract_address
     	return (<div>
-    		<p>🌈 Thank you for using the $COLR vending machine!</p>
-    		<p>💰 You have initiated a transaction for {intendedColrAmount} $COLR.</p>    		
-    		<p>🦄 You can verify the uniswap exchange address: <b><a target="_blank" href={etherscanLink}>https://etherscan.io/address/{uniswap_contract_address}</a></b></p>
-    		<p>🦄 Or exchange directly at: <b><a target="_blank" href={uniswap_exchange_colr_url}>{uniswap_exchange_colr_url}</a></b></p>
-    		<p>⛽️ Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
-    		<p>🗒️ Documentation on using $COLR can be found <a target="_blank" href="https://www.cryptovoxels.com/docs/colr">here</a>.</p>
-    		<p>💥 Close this window to return to Cryptovoxels.</p>
+    		<p><span>🌈</span> Thank you for using the $COLR vending machine!</p>
+    		<p><span>💰</span> You have initiated a transaction for {intendedColrAmount} $COLR.</p>    		
+    		<p><span>🦄</span> You can verify the uniswap exchange address: <b><a target="_blank" href={etherscanLink}>https://etherscan.io/address/{uniswap_contract_address}</a></b></p>
+    		<p><span>🦄</span> Or exchange directly at: <b><a target="_blank" href={uniswap_exchange_colr_url}>{uniswap_exchange_colr_url}</a></b></p>
+    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
+    		<p><span>🗒️</span> Documentation on using $COLR can be found <a target="_blank" href="https://www.cryptovoxels.com/docs/colr">here</a>.</p>
+    		<p><span>💥</span> Close this window to return to Cryptovoxels.</p>
     		</div>
 		)
 	}
