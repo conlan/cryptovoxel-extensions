@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "901eb7b6d849afd5162898c58c843f5d",
+    "revision": "bb8300c629aac83f4c1bbc7ba884bcb6",
     "url": "/cryptovoxel-extensions/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/cryptovoxel-extensions/static/js/2.4085b344.chunk.js"
   },
   {
-    "revision": "52b6ecd7b74e127841a7",
-    "url": "/cryptovoxel-extensions/static/js/main.6fc4dd42.chunk.js"
+    "revision": "eaf048f90606313f5401",
+    "url": "/cryptovoxel-extensions/static/js/main.bd9b8d42.chunk.js"
   },
   {
     "revision": "cf4b63b539b1b7fd4242",
