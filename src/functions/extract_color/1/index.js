@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import './ExtractColorV1.css';
 
 const ethers = require('ethers');
 var utils = require('ethers').utils
@@ -44,6 +46,13 @@ async function getStakedAmount() {
 	app.setState({})
 }
 
+function isAddress(address) {
+    try {
+        utils.getAddress(address);
+    } catch (e) { return false; }
+    return true;
+}
+
 async function withdrawStake() {
 	console.log("withdraw stake")
 
@@ -59,10 +68,12 @@ async function withdrawStake() {
 
 	var recipientAddress = document.getElementsByName("address")[0].value
 
-	if (recipientAddress.length == 0) {
-		window.alert("Please provide a recipient address.")
+	if ((recipientAddress.length == 0) || (isAddress(recipientAddress) == false)) {
+		window.alert("Please provide a valid recipient address.")
 		return;
 	}
+
+	console.log(isAddress(recipientAddress))
 	
 	// get contract interface
 	var iface = new ethers.Interface(colr_contract_ABI)	
@@ -71,10 +82,6 @@ async function withdrawStake() {
 	var calldata = iface.functions.withdraw.encode(
 		[recipientAddress, withdrawAmount, parcelId]
 	)
-
-	console.log(typeof(recipientAddress))
-	console.log(typeof(withdrawAmount))
-	console.log(typeof(parcelId))
 
 	console.log("Calldata: " + calldata)
 
@@ -115,14 +122,14 @@ class ExtractColorV1 extends Component {
 			return (<div>
 	    		<p>Parcel ID (Ensure that you own this parcel, otherwise the transaction will <i>fail</i>):</p>
 	    		<input type="number" name="parcelInput" min="1" max="4000"/>	    	
-	    		<button onClick={getStakedAmount} type="button">Fetch</button>
+	    		<button onClick={getStakedAmount} type="button">LOAD</button>
 	    		</div>
 			)
 		} else if (stakedAmount == 0) {
 			return (<div>
 	    		<p>Parcel ID (Ensure that you own this parcel, otherwise the transaction will <i>fail</i>):</p>
 	    		<input type="number" name="parcelInput" min="1" max="4000"/>
-	    		<button onClick={getStakedAmount} type="button">Fetch</button>
+	    		<button onClick={getStakedAmount} type="button">LOAD</button>
 	    		<p><span>🌈</span> {stakedAmount} COLR staked on Parcel <a target="_blank" href={parcelLink}>#{parcelId}</a>.</p>
 	    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
 	    		</div>
@@ -131,13 +138,12 @@ class ExtractColorV1 extends Component {
 	    	return (<div>
 	    		<p>Parcel ID (Ensure that you own this parcel, otherwise the transaction will <i>fail</i>):</p>
 	    		<input type="number" name="parcelInput" min="1" max="4000"/>
-	    		<button onClick={getStakedAmount} type="button">Fetch</button>
+	    		<button onClick={getStakedAmount} type="button">LOAD</button>
 	    		<p><span>🌈</span> {stakedAmount} COLR staked on Parcel <a target="_blank" href={parcelLink}>#{parcelId}</a>. Withdraw how much?</p>
 	    		<input type="number" name="colr" min="1" max={stakedAmount}/>
-				<p>To recipient wallet address:</p>
+				<p>Recipient wallet address:</p>
 	    		<input name="address" defaultValue={web3context.account}/>	    		
-	    		<br/><br/>
-	    		<button onClick={withdrawStake} type="button">Submit</button>
+	    		<button onClick={withdrawStake} type="button">WITHDRAW</button>
 	    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
 	    		<p>💥 Close this window after submitting to return to Cryptovoxels.</p>
 	    		</div>
