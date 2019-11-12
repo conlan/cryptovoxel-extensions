@@ -61,7 +61,7 @@ async function get_exchange_rate_and_swap() {
 	signer.sendTransaction(tx)
 }
 
-const MAX_ALLOWED_COLR_PURCHASE = 100;
+const MAX_ALLOWED_COLR_PURCHASE = 250;
 
 class ColorVendingV1 extends Component {
 	constructor(props) {
