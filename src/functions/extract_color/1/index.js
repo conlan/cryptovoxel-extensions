@@ -13,8 +13,7 @@ var app = null;
 var stakedAmount = -1;
 var parcelId = -1
 var isFetchingStake = false;
-var userAddress = "0x9AF481276b075e036BC23E887a8Bd275e69Ef74C"
-
+var userAddress = ""
 
 async function getStakedAmount() {
 	stakedAmount = -1
@@ -54,6 +53,11 @@ async function withdrawStake() {
 
 	var withdrawAmount = parseInt(document.getElementsByName("colr")[0].value)
 
+	if (withdrawAmount > stakedAmount) {
+		window.alert("You cannot withdraw more COLR than is staked.")
+		return;
+	}
+
 	var recipientAddress = document.getElementsByName("address")[0].value
 
 	if (recipientAddress.length == 0) {
@@ -83,9 +87,7 @@ async function withdrawStake() {
 
 	const tx = {
 		to: colr_contract_address,
-		data: calldata,
-		gasLimit: 21000,
-		value : 0
+		data: calldata
 	}
 
 	// send the transaction
@@ -100,6 +102,8 @@ class ExtractColorV1 extends Component {
 		web3context = this.props.props.context	
 
 		app = this.props.app;
+
+		userAddress = "0x9AF481276b075e036BC23E887a8Bd275e69Ef74C"
 
 		document.title += " Extract $COLR"
 	}
