@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cryptovoxel-extensions/precache-manifest.9c6e27c6529a247b0a3ff1422346e52c.js"
+  "/cryptovoxel-extensions/precache-manifest.78cdfd75dfed7572865ffd23e81c166b.js"
 );
 
 self.addEventListener('message', (event) => {
