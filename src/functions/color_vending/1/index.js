@@ -50,14 +50,28 @@ async function get_exchange_rate_and_swap() {
 	// get the signer
 	var signer = web3context.library.getSigner();
 
-	const tx = {
-		to: uniswap_contract_address,
-		data: calldata,
-		value: ethers.utils.parseEther(exchangeRateEth.toString()),
-	}
+	fetch("https://ethgasstation.info/json/ethgasAPI.json").then(response => response.json()).then(response => {
+		var gasPrice = response.fast
 
-	// send the transaction
-	signer.sendTransaction(tx)
+		// default gas price of 10 if we got an undefined response
+		if (gasPrice == undefined) {
+			gasPrice = 10
+		} else {
+			gasPrice = gasPrice / 10
+		}
+
+		console.log(gasPrice)
+
+		const tx = {
+			to: uniswap_contract_address,
+			data: calldata,
+			value: ethers.utils.parseEther(exchangeRateEth.toString()),
+			gasPrice: ethers.utils.bigNumberify(gasPrice * 1000000000)
+		}
+
+		// send the transaction
+		signer.sendTransaction(tx)
+	})
 }
 
 const MAX_ALLOWED_COLR_PURCHASE = 250;

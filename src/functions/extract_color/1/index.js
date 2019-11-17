@@ -131,7 +131,7 @@ class ExtractColorV1 extends Component {
 	    		<input type="number" name="parcelInput" min="1" max="4000"/>
 	    		<button onClick={getStakedAmount} type="button">LOAD</button>
 	    		<p><span>🌈</span> {stakedAmount} COLR staked on Parcel <a target="_blank" href={parcelLink}>#{parcelId}</a>.</p>
-	    		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
+	    		<p>💥 Close this window to return to Cryptovoxels.</p>
 	    		</div>
 			)
 		} else {
