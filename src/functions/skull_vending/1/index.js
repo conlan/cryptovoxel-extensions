@@ -74,7 +74,8 @@ async function get_exchange_rate_and_swap() {
 	})
 }
 
-const MAX_ALLOWED_SKULL_PURCHASE = 5000;
+const SKULL_DENOMINATION = 1e4;
+const MAX_ALLOWED_SKULL_PURCHASE = 5000 * SKULL_DENOMINATION;
 
 class SkullVendingV1 extends Component {
 	constructor(props) {
@@ -84,7 +85,7 @@ class SkullVendingV1 extends Component {
 		web3context = this.props.props.context	
 
 		// set the intended skull purchase amount
-		intendedExchangeAmount = parseInt(this.props.props.intentData.value)
+		intendedExchangeAmount = parseInt(this.props.props.intentData.value) * SKULL_DENOMINATION;
 
 		document.title += " $SKULL Vending Machine"
 	}
@@ -105,7 +106,7 @@ class SkullVendingV1 extends Component {
 		var etherscanLink = "https://etherscan.io/address/" + uniswap_contract_address
     	return (<div>
     		<p><span>💀</span> Thank you for using the $SKULL vending machine!</p>
-    		<p><span>💰</span> You have initiated a transaction for {intendedExchangeAmount} $SKULL.</p>    		
+    		<p><span>💰</span> You have initiated a transaction for {intendedExchangeAmount / SKULL_DENOMINATION} $SKULL.</p>    		
     		<p><span>🦄</span> You can verify the uniswap exchange address: <b><a target="_blank" href={etherscanLink}>https://etherscan.io/address/{uniswap_contract_address}</a></b></p>
     		<p><span>🦄</span> Or exchange directly at: <b><a target="_blank" href={uniswap_exchange_url}>{uniswap_exchange_url}</a></b></p>
     		<p><span>⛽️</span> Please be sure to check all inputs and gas before submitting your transaction. Recommended gas prices can be found at <b><a target="_blank" href={eth_gas_station_url}>{eth_gas_station_url}</a></b></p>
