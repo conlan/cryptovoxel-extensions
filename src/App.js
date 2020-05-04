@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useWeb3Context } from 'web3-react'
 
 import ColorVendingV1 from './functions/color_vending/1/index'
+import SkullVendingV1 from './functions/skull_vending/1/index'
 import ExtractColorV1 from './functions/extract_color/1/index'
 
 export default function App (props) {
@@ -30,6 +31,8 @@ export default function App (props) {
 
     if (path === "colr-vending1") {
       return <ColorVendingV1 props={componentData}/>
+    } else if (path === "skull-vending1") {
+      return <SkullVendingV1 props={componentData}/>
     } else if (path === "extract_colr1") {
       return <ExtractColorV1 props={componentData} app={props.app}/>
     } else {
